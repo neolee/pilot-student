@@ -1,5 +1,6 @@
 import random
-import time
+from time import sleep
+from termcolor import colored
 
 class Bot:
     
@@ -11,13 +12,16 @@ class Bot:
         
     def _think(self, s):
         return s
+
+    def _format(self, s):
+        return colored(s, 'blue')
     
     def run(self):
-        time.sleep(Bot.wait)
-        print(self.q)
+        sleep(Bot.wait)
+        print(self._format(self.q))
         self.a = input()
-        time.sleep(Bot.wait)
-        print(self._think(self.a), end='\n \n')
+        sleep(Bot.wait)
+        print(self._format(self._think(self.a)), end='\n \n')
         #print()
 
 
@@ -60,9 +64,12 @@ class Garfield:
         
     def add(self, bot):
         self.bots.append(bot)
+
+    def _format(self, s):
+        return colored(s, 'blue')
     
     def _prompt(self, s):
-        print(s, end='\n')
+        print(self._format(s), end='\n')
         
     def run(self):
         self._prompt("This is Garfield dialog system. Let's talk.")
